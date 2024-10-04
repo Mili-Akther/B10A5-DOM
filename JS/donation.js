@@ -1,56 +1,86 @@
-// Initialize the navbar amount
-let navbarAmount = 5500;
+// Toggling between Donation and History views
+document
+  .getElementById("donationButton")
+  .addEventListener("click", function () {
+    document.getElementById("donationSection").classList.remove("hidden");
+    document.getElementById("historySection").classList.add("hidden");
+  });
 
-// Add event listeners to all "Write Donation Amount" buttons
-document.querySelectorAll(".writeDonationButton").forEach(function (button) {
+document.getElementById("historyButton").addEventListener("click", function () {
+  document.getElementById("donationSection").classList.add("hidden");
+  document.getElementById("historySection").classList.remove("hidden");
+});
+
+// Handling Donation Logic
+const accountBalanceElement = document.getElementById("accountBalance");
+let accountBalance = parseFloat(accountBalanceElement.textContent) || 0;
+
+document.querySelectorAll(".donateNowButton").forEach((button) => {
   button.addEventListener("click", function () {
-    // Prompt user to enter donation amount
-    let donationAmount = prompt("Enter your donation amount in BDT:");
-
-    // Trim the input to remove unnecessary spaces
-    donationAmount = donationAmount ? donationAmount.trim() : null;
-
-    // Ensure the input is a valid number and not negative
-    if (
-      donationAmount !== null &&
-      !isNaN(donationAmount) &&
-      donationAmount !== ""
-    ) {
-      donationAmount = parseFloat(donationAmount); // Convert input to a number
-
-      // Check for negative donation amount
-      if (donationAmount < 0) {
-        alert("Invalid amount! Please enter a positive donation amount.");
-        return; // Exit the function if the amount is negative
-      }
-
-      // Find the button with the donation amount using a safer selector
-      let currentButton =
-        this.closest(".hero-content").querySelector(".btn-sm"); // Finds the correct button
-      let currentAmount = parseFloat(
-        currentButton.textContent.replace(" BDT", "")
-      );
-      currentAmount += donationAmount; // Update the button amount
-      currentButton.textContent = `${currentAmount} BDT`; // Set the new amount
-
-      // Update the navbar amount
-      navbarAmount -= donationAmount; // Deduct from navbar amount
-      document.getElementById(
-        "navbarAmount"
-      ).textContent = `${navbarAmount} BDT`; // Update navbar amount
-
-      // Show notification
-      const notification = document.getElementById("notification");
-      notification.classList.remove("hidden");
-    } else if (donationAmount !== null) {
-      alert("Invalid Donation Amount.");
+    const donationAmount = parseFloat(prompt("Enter your donation amount:"));
+    if (isNaN(donationAmount) || donationAmount <= 0) {
+      alert("Please enter a valid donation amount.");
+      return;
     }
+
+    if (donationAmount > accountBalance) {
+      alert("Donation amount exceeds current balance.");
+      return;
+    }
+
+    // Deduct the donation amount
+    accountBalance -= donationAmount;
+    accountBalanceElement.textContent = accountBalance.toFixed(2);
+
+    // Update card's donation amount
+    const donationAmountElement = this.parentElement.querySelector(".btn-sm");
+    const currentAmount = parseFloat(donationAmountElement.textContent) || 0;
+    donationAmountElement.textContent = (currentAmount + donationAmount).toFixed(2);
+
+    // Add to history
+    addDonationToHistory(this.dataset.donationName, donationAmount);
+
+    // Show notification
+    const notification = document.getElementById("notification");
+    notification.classList.remove("hidden");
+
+    // Close the modal and clear input (assuming donationModal and donationInput are defined)
+    donationModal.classList.add("hidden");
+    donationInput.value = '';
   });
 });
 
-// Add event listener to the close notification button
+
 document
   .getElementById("closeNotification")
   .addEventListener("click", function () {
+    console.log("Close button clicked!"); // This should appear in the console
     document.getElementById("notification").classList.add("hidden");
   });
+
+// Function to add donation to history
+function addDonationToHistory(donationName, amount) {
+  const date = new Date();
+  const historyEntry = {
+    name: donationName,
+    amount: amount,
+    date: date.toLocaleString(),
+  };
+
+  // Save to local storage
+  let history = JSON.parse(localStorage.getItem("donationHistory")) || [];
+  history.push(historyEntry);
+  localStorage.setItem("donationHistory", JSON.stringify(history));
+}
+
+// Add event listener to the donation cancel button
+document.getElementById("donationCancel").addEventListener("click", function () {
+  donationModal.classList.add("hidden");
+  donationInput.value = '';
+});
+
+// Add event listener to the close notification button
+document.getElementById("closeNotification").addEventListener("click", function () {
+  console.log("Close button clicked!"); // Debugging line to check if it works
+  document.getElementById("notification").classList.add("hidden");
+});

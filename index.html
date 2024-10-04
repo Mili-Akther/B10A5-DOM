@@ -39,7 +39,10 @@
               id="noakhaliAmountBtn"
               aria-label="Noakhali donation amount"
             >
-              <img src="assets/coin.png" alt="Coin" class="w-6 h-6 mr-2" />5500 BDT
+              <span id="accountBalance" class="hidden">100000</span>
+
+              <img src="assets/coin.png" alt="Coin" class="w-6 h-6 mr-2" />5500
+              BDT
             </button>
           </div>
         </div>
@@ -48,9 +51,15 @@
 
     <!-- Main section start -->
     <main class="flex flex-col items-center justify-center mt-12 p-4">
-      <!-- Top buttons -->
+      <!--Donation and History Button -->
+
       <div class="flex gap-4 mb-7">
-        <button class="btn px-6 text-xl font-bold bg-lime-300">Donation</button>
+        <button
+          id="donationButton"
+          class="btn px-6 text-xl font-bold bg-lime-300"
+        >
+          Donation
+        </button>
         <button
           id="historyButton"
           class="btn px-6 text-xl font-bold border border-gray-300 bg-base-100"
@@ -59,10 +68,36 @@
         </button>
       </div>
 
+      <!-- Donation Section (default visible) -->
+      <section id="donationSection">
+        <!-- Donation cards go here -->
+      </section>
+
+      <!-- History Section (initially hidden) -->
+      <section id="historySection" class="hidden">
+        <div id="historyContainer"></div>
+      </section>
+
+      <!-- Top buttons
+      <div class="flex gap-4 mb-7">
+        <button
+          id="donationButton"
+          class="btn px-6 text-xl font-bold bg-lime-300"
+        >
+          Donation
+        </button>
+        <button
+          id="historyButton"
+          class="btn px-6 text-xl font-bold border border-gray-300 bg-base-100"
+        >
+          History
+        </button>
+      </div> -->
+
       <!-- Notification -->
       <div
         id="notification"
-        class="hidden fixed  top-[47%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-12 w-96  rounded-2xl shadow-lg z-50 text-center"
+        class="hidden fixed top-[47%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-12 w-96 rounded-2xl shadow-lg z-50 text-center"
       >
         <h1 class="font-bold text-3xl mt-0">Congrats!</h1>
         <img class="mx-auto my-4" src="assets/coin.png" alt="" />
@@ -96,7 +131,11 @@
               id="noakhaliAmountBtn"
               aria-label="Noakhali donation amount"
             >
-              <img src="assets/coin.png" alt="Coin" class="w-6 h-6 mr-2" />0 BDT
+              <img
+                src="assets/coin.png"
+                alt="Coin"
+                class="current-donation-amount w-6 h-6 mr-2"
+              />0 BDT
             </button>
           </div>
           <h1 class="text-xl font-bold text-center lg:text-left">
@@ -107,12 +146,14 @@
             homes and infrastructure. Your donation will help provide essential
             supplies and support to those affected by this disaster.
           </p>
+          <input
+            type="number"
+            class="donation-input w-full mb-4 border border-gray-300 p-2 rounded"
+            placeholder="Write Donation Amount"
+          />
           <button
-            class="writeDonationButton btn w-full bg-base-100 mb-4 text-left"
+            class="donateNowButton btn w-full bg-lime-300 text-justify text-xl"
           >
-            Write Donation Amount
-          </button>
-          <button class="btn w-full bg-lime-300 text-justify text-xl">
             Donate Now
           </button>
         </div>
@@ -152,12 +193,14 @@
             provide immediate aid, including food, clean water, and medical
             supplies, to those affected by this calamity.
           </p>
+          <input
+            type="number"
+            class="donation-input w-full mb-4 border border-gray-300 p-2 rounded"
+            placeholder="Write Donation Amount"
+          />
           <button
-            class="writeDonationButton btn w-full bg-base-100 mb-4 text-left"
+            class="donateNowButton btn w-full bg-lime-300 text-justify text-xl"
           >
-            Write Donation Amount
-          </button>
-          <button class="btn w-full bg-lime-300 text-justify text-xl">
             Donate Now
           </button>
         </div>
@@ -197,144 +240,14 @@
             in providing medical assistance, rehabilitation, and necessary
             supplies to those affected.
           </p>
+          <input
+            type="number"
+            class="donation-input w-full mb-4 border border-gray-300 p-2 rounded"
+            placeholder="Write Donation Amount"
+          />
           <button
-            class="writeDonationButton btn w-full bg-base-100 mb-4 text-left"
+            class="donateNowButton btn w-full bg-lime-300 text-justify text-xl"
           >
-            Write Donation Amount
-          </button>
-          <button class="btn w-full bg-lime-300 text-justify text-xl">
-            Donate Now
-          </button>
-        </div>
-      </div>
-      <!-- Quota Movement Section -->
-      <div
-        class="hero-content flex-col lg:flex-row items-center justify-center p-6 rounded-3xl max-w-7xl gap-2 mt-10 border border-gray-100 shadow-lg bg-white"
-      >
-        <!-- Image -->
-        <img
-          src="assets/quota-protest.png"
-          class="rounded-lg lg:max-w-md h-full object-cover"
-          alt="Quota Movement Injuries"
-        />
-
-        <!-- Text Content -->
-        <div
-          class="flex flex-col items-center lg:items-start max-w-lg lg:ml-8 h-full"
-        >
-          <div class="flex items-center mb-4">
-            <button
-              class="btn btn-sm"
-              id="quotaAmountBtn"
-              aria-label="Quota Movement donation amount"
-            >
-              <img src="assets/coin.png" alt="Coin" class="w-6 h-6 mr-2" />2400
-              BDT
-            </button>
-          </div>
-          <h1 class="text-xl font-bold text-center lg:text-left">
-            Aid for Injured in the Quota Movement
-          </h1>
-          <p class="py-2 text-justify">
-            The recent Quota movement has resulted in numerous injuries and
-            significant hardship for many individuals. Your support is crucial
-            in providing medical assistance, rehabilitation, and necessary
-            supplies to those affected.
-          </p>
-          <button
-            class="writeDonationButton btn w-full bg-base-100 mb-4 text-left"
-          >
-            Write Donation Amount
-          </button>
-          <button class="btn w-full bg-lime-300 text-justify text-xl">
-            Donate Now
-          </button>
-        </div>
-      </div>
-      <!-- Quota Movement Section -->
-      <div
-        class="hero-content flex-col lg:flex-row items-center justify-center p-6 rounded-3xl max-w-7xl gap-2 mt-10 border border-gray-100 shadow-lg bg-white"
-      >
-        <!-- Image -->
-        <img
-          src="assets/quota-protest.png"
-          class="rounded-lg lg:max-w-md h-full object-cover"
-          alt="Quota Movement Injuries"
-        />
-
-        <!-- Text Content -->
-        <div
-          class="flex flex-col items-center lg:items-start max-w-lg lg:ml-8 h-full"
-        >
-          <div class="flex items-center mb-4">
-            <button
-              class="btn btn-sm"
-              id="quotaAmountBtn"
-              aria-label="Quota Movement donation amount"
-            >
-              <img src="assets/coin.png" alt="Coin" class="w-6 h-6 mr-2" />2400
-              BDT
-            </button>
-          </div>
-          <h1 class="text-xl font-bold text-center lg:text-left">
-            Aid for Injured in the Quota Movement
-          </h1>
-          <p class="py-2 text-justify">
-            The recent Quota movement has resulted in numerous injuries and
-            significant hardship for many individuals. Your support is crucial
-            in providing medical assistance, rehabilitation, and necessary
-            supplies to those affected.
-          </p>
-          <button
-            class="writeDonationButton btn w-full bg-base-100 mb-4 text-left"
-          >
-            Write Donation Amount
-          </button>
-          <button class="btn w-full bg-lime-300 text-justify text-xl">
-            Donate Now
-          </button>
-        </div>
-      </div>
-      <!-- Quota Movement Section -->
-      <div
-        class="hero-content flex-col lg:flex-row items-center justify-center p-6 rounded-3xl max-w-7xl gap-2 mt-10 border border-gray-100 shadow-lg bg-white"
-      >
-        <!-- Image -->
-        <img
-          src="assets/quota-protest.png"
-          class="rounded-lg lg:max-w-md h-full object-cover"
-          alt="Quota Movement Injuries"
-        />
-
-        <!-- Text Content -->
-        <div
-          class="flex flex-col items-center lg:items-start max-w-lg lg:ml-8 h-full"
-        >
-          <div class="flex items-center mb-4">
-            <button
-              class="btn btn-sm"
-              id="quotaAmountBtn"
-              aria-label="Quota Movement donation amount"
-            >
-              <img src="assets/coin.png" alt="Coin" class="w-6 h-6 mr-2" />2400
-              BDT
-            </button>
-          </div>
-          <h1 class="text-xl font-bold text-center lg:text-left">
-            Aid for Injured in the Quota Movement
-          </h1>
-          <p class="py-2 text-justify">
-            The recent Quota movement has resulted in numerous injuries and
-            significant hardship for many individuals. Your support is crucial
-            in providing medical assistance, rehabilitation, and necessary
-            supplies to those affected.
-          </p>
-          <button
-            class="writeDonationButton btn w-full bg-base-100 mb-4 text-left"
-          >
-            Write Donation Amount
-          </button>
-          <button class="btn w-full bg-lime-300 text-justify text-xl">
             Donate Now
           </button>
         </div>
@@ -351,6 +264,13 @@
         .addEventListener("click", function () {
           window.location.href = "history.html"; // Change 'history.html' to your target page
         });
+
+         // Add event listener to the Donation button
+        document.getElementById("donationButton").addEventListener("click", function () {
+            window.location.href = "index.html"; // Change 'index.html' to your target page
+        });
+
+  
     </script>
   </body>
 </html>

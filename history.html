@@ -48,48 +48,29 @@
   </head>
   
 <main class="flex flex-col items-center justify-center mt-12 p-4">
+  
    <!-- Top buttons -->
         <div class="flex gap-4 mb-7">
-            <button class="btn px-6 text-xl font-bold bg-lime-300">Donation</button>
+            <button id="donationButton" class="btn px-6 text-xl font-bold bg-lime-300">Donation</button>
             <button id="historyButton" class="btn px-6 text-xl font-bold border border-gray-300 bg-base-100">
                 History
             </button>
         </div>
 
-        <!-- layer section start -->
-        
-        <div class=" h-32 border border-gray-100 shadow-md rounded-xl p-5 pb-5 px-96 mb-10" style="padding-left: 0; ">
-        <h1 class="font-bold text-xl text-left pl-10">96500 Taka is Donated for famine-2024 at Feni, Bangladesh</h1>
-       <p class="mt-5 text-left pl-10">Date : Tue Sep 17 2024 08:39:11 GMT +0600 (Bangladesh Standard Time)</p>
-       </div>
-        <!-- layer section-2 -->
-        <div class=" h-32 border border-gray-100 shadow-md rounded-xl p-5 pb-5 px-96 mb-10" style="padding-left: 0;">
-        <h1 class="font-bold text-xl text-left pl-10">96500 Taka is Donated for famine-2024 at Feni, Bangladesh</h1>
-       <p class="mt-5 text-left pl-10">Date : Tue Sep 17 2024 08:39:11 GMT +0600 (Bangladesh Standard Time)</p>
-       </div>
-        <!-- layer section-3 -->
-        <div class=" h-32 border border-gray-100 shadow-md rounded-xl p-5 pb-5 px-96 mb-10" style="padding-left: 0;">
-        <h1 class="font-bold text-xl text-left pl-10">96500 Taka is Donated for famine-2024 at Feni, Bangladesh</h1>
-       <p class="mt-5 text-left pl-10">Date : Tue Sep 17 2024 08:39:11 GMT +0600 (Bangladesh Standard Time)</p>
-       </div>
-        <!-- layer section-4 -->
-        <div class=" h-32 border border-gray-100 shadow-md rounded-xl p-5 pb-5 px-96 mb-10" style="padding-left: 0;">
-        <h1 class="font-bold text-xl text-left pl-10">96500 Taka is Donated for famine-2024 at Feni, Bangladesh</h1>
-       <p class="mt-5 text-left pl-10">Date : Tue Sep 17 2024 08:39:11 GMT +0600 (Bangladesh Standard Time)</p>
-       </div>
-        <!-- layer section-5 -->
-        <div class=" h-32 border border-gray-100 shadow-md rounded-xl p-5 pb-5 px-96 " style="padding-left: 0;">
-        <h1 class="font-bold text-xl text-left pl-10">96500 Taka is Donated for famine-2024 at Feni, Bangladesh</h1>
-       <p class="mt-5 text-left pl-10">Date : Tue Sep 17 2024 08:39:11 GMT +0600 (Bangladesh Standard Time)</p>
-       </div>
-        <!-- layer section-6 -->
-        <div class=" h-32 border border-gray-100 shadow-md rounded-xl p-5 pb-5 px-96 mb-10" style="padding-left: 0;">
-        <h1 class="font-bold text-xl text-left pl-10">96500 Taka is Donated for famine-2024 at Feni, Bangladesh</h1>
-       <p class="mt-5 text-left pl-10">Date : Tue Sep 17 2024 08:39:11 GMT +0600 (Bangladesh Standard Time)</p>
-       </div>
-    
+<section id="historySection" class="mt-8 p-4 w-full max-w-7xl bg-white shadow-lg rounded-lg">
+  <h2 class="text-2xl font-bold mb-4">Donation History</h2>
+  <div id="historyContainer" class="flex flex-col gap-4"></div>
+</section>
+          
 </main>
 
 <script src="JS/history.js"></script>
+<script src="JS/donation.js"></script>
+<script>
+   // Add event listener to the Donation button
+        document.getElementById("donationButton").addEventListener("click", function () {
+            window.location.href = "index.html"; // Change 'index.html' to your target page
+        });
+</script>
   </body>
 </html>
