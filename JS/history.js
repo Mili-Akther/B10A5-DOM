@@ -1,4 +1,4 @@
-// Load history data from local storage and display
+
 document.addEventListener("DOMContentLoaded", function () {
   const historyContainer = document.getElementById("historyContainer");
   const history = JSON.parse(localStorage.getItem("donationHistory")) || [];
@@ -18,9 +18,26 @@ document.addEventListener("DOMContentLoaded", function () {
       "pl-10"
     );
     historyEntryDiv.innerHTML = `
-      <h1 class="font-bold text-xl text-left">${entry.amount} Taka is Donated for ${entry.name}</h1>
-      <p class="mt-5 text-left">Date : ${entry.date}</p>
-    `;
+            <h1 class="font-bold text-xl text-left">${entry.amount} Taka is Donated for ${entry.name}</h1>
+            <p class="mt-5 text-left">Date : ${entry.date}</p>
+        `;
     historyContainer.appendChild(historyEntryDiv);
   });
 });
+
+
+function clearHistory() {
+  localStorage.removeItem("donationHistory"); 
+  updateHistoryDisplay(); 
+}
+
+
+function updateHistoryDisplay() {
+  const historyContainer = document.getElementById("historyContainer");
+  historyContainer.innerHTML = ""; 
+}
+
+
+document
+  .getElementById("clearHistoryButton")
+  .addEventListener("click", clearHistory);

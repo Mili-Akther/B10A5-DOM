@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Donation Page</title>
+    <title>Blog</title>
+
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- DaisyUI CDN -->
@@ -23,19 +24,18 @@
           </div>
           <div class="navbar-center">
             <img src="/assets/logo.png" alt="Logo" class="mr-2" />
-            <a href="/index.html" class="text-xl cursor-pointer">Donate Bangladesh</a>
+            <a class="text-xl">Donate Bangladesh</a>
           </div>
           <div class="navbar-end flex items-center gap-4">
             <div class="flex items-center gap-2">
               <img src="/assets/coin.png" alt="Coin" class="w-6 h-6" />
-              <p><span id="accountBalance"></span> BDT</p>
+              <p><span id="accountBalance">500</span> BDT</p>
             </div>
           </div>
         </div>
       </nav>
     </header>
-
-    <!-- Main section start -->
+     <!-- Main section start -->
     <main class="flex flex-col items-center justify-center mt-12 p-4">
       <!--Donation and History Button -->
       <div class="flex gap-4 mb-7">
@@ -51,12 +51,11 @@
         </button>
       </div>
 
-      <!-- Donation Section (default visible) -->
+     
       <section id="donationSection">
-        <!-- Donation cards go here -->
+    
       </section>
 
-      <!-- History Section (initially hidden) -->
       <section id="historySection" class="hidden"></section>
 
       <!-- Notification -->
